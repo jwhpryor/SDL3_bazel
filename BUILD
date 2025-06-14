@@ -25,6 +25,7 @@ cc_binary(
   srcs = glob(["src/engine.*", "src/main.cpp"]),
   deps = [
     "@com_github_sdl//:sdl3_shared",
+    "@com_github_bgfx//:bgfx",
     ":game_headers",
   ]
 )

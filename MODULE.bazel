@@ -13,6 +13,27 @@ http_archive(
     url = "https://github.com/libsdl-org/SDL/releases/download/release-3.2.0/SDL3-3.2.0.tar.gz",
 )
 
+http_archive(
+    name = "com_github_bx",
+    build_file = "@//third_party:bx.BUILD",
+    strip_prefix = "bx-master",
+    url = "https://github.com/bkaradzic/bx/archive/refs/heads/master.tar.gz",
+)
+
+http_archive(
+    name = "com_github_bimg",
+    build_file = "@//third_party:bimg.BUILD",
+    strip_prefix = "bimg-master",
+    url = "https://github.com/bkaradzic/bimg/archive/refs/heads/master.tar.gz",
+)
+
+http_archive(
+    name = "com_github_bgfx",
+    build_file = "@//third_party:bgfx.BUILD",
+    strip_prefix = "bgfx-master",
+    url = "https://github.com/bkaradzic/bgfx/archive/refs/heads/master.tar.gz",
+)
+
 bazel_dep(
     name = "rules_foreign_cc",
     version = "0.15.0",
