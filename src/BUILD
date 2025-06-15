@@ -35,7 +35,7 @@ cc_binary(
 
 cc_binary(
   name = "release",
-  srcs = glob(["**"], exclude=["main.cpp"]),
+  srcs = glob(["*.cpp", "*.h"], exclude=["main.cpp"]),
   deps = [
     "@com_github_sdl//:sdl3_shared"
   ],
@@ -44,7 +44,7 @@ cc_binary(
 
 cc_binary(
     name = "release-static-linked",
-    srcs = glob(["**"], exclude=["main.cpp"]),
+    srcs = glob(["*.cpp", "*.h"], exclude=["main.cpp"]),
     deps = [
         "@com_github_sdl//:sdl3_static",
     ],
@@ -63,12 +63,3 @@ wasm_cc_binary(
   visibility = ["//:__pkg__"],
 )
 
-wasm_cc_binary(
-  name = "sdl3-wasm-js-only",
-  cc_target = ":release-static-linked",
-  outputs = [
-    "sdl3-wasm-js-only.wasm",
-    "sdl3-wasm-js-only.js"
-  ],
-  visibility = ["//:__pkg__"],
-)

@@ -47,6 +47,7 @@ cmake(
     out_include_dir = "include",
     out_static_libs = select({
         "@bazel_tools//src/conditions:linux": ["libSDL3.a"],
+        "@bazel_tools//src/conditions:darwin": ["libSDL3.a"],
         "@platforms//cpu:wasm32": ["libSDL3.a"],
         "@platforms//os:wasi": ["libSDL3.a"],
         "@bazel_tools//src/conditions:windows": ["SDL3.lib"] # is this right?
