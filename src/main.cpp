@@ -34,9 +34,12 @@ SDL_AppResult SDL_AppEvent(void *appstate, SDL_Event *event) {
   case SDL_EVENT_KEY_DOWN:
     switch (event->key.key) {
     case SDLK_W:
-      if (engine_rebuild_reload_game(&state) != SDL_APP_CONTINUE) {
-        SDL_Log("Game reload triggered by keypress failed: %s", SDL_GetError());
-        return SDL_APP_FAILURE;
+      // Only reload game if no modifier keys are pressed (avoid conflict with Cmd+W)
+      if (!(event->key.mod & (SDL_KMOD_GUI | SDL_KMOD_CTRL | SDL_KMOD_ALT))) {
+        if (engine_rebuild_reload_game(&state) != SDL_APP_CONTINUE) {
+          SDL_Log("Game reload triggered by keypress failed: %s", SDL_GetError());
+          return SDL_APP_FAILURE;
+        }
       }
       break;
     }
