@@ -34,7 +34,7 @@ SDL_AppResult engine_init(const int width, const int height, const char *title,
 
   state->game->isValid = false;
 
-  state->game->game_object = SDL_LoadObject("./libgame.dylib");
+  state->game->game_object = SDL_LoadObject("src/libgame.dylib");
   if (state->game->game_object == nullptr) {
     SDL_Log("Failed to load game code: %s", SDL_GetError());
     return SDL_APP_FAILURE;
@@ -66,7 +66,7 @@ SDL_AppResult engine_build_game(struct AppState *state) {
   const char *pwd = std::getenv("BUILD_WORKING_DIRECTORY");
   SDL_Log("Working directory: %s", pwd);
   char cmd[200];
-  auto n = snprintf(cmd, 200, "cd %s && bazel build //:game", pwd);
+  auto n = snprintf(cmd, 200, "cd %s && bazel build //src:game", pwd);
   SDL_Log("Rebuilding game code with command: %s", cmd);
   const int result = std::system(cmd);
   if (result != 0) {
@@ -89,7 +89,7 @@ SDL_AppResult engine_rebuild_reload_game(struct AppState *state) {
     return SDL_APP_FAILURE;
   }
 
-  state->game->game_object = SDL_LoadObject("./libgame.dylib");
+  state->game->game_object = SDL_LoadObject("src/libgame.dylib");
   if (state->game->game_object == nullptr) {
     SDL_Log("Failed to load game code: %s", SDL_GetError());
     return SDL_APP_FAILURE;

@@ -1,4 +1,11 @@
+.DS_Store
+build/
+.idea/
 bazel-bin
 bazel-out
 bazel-*
-index.html
+bazel-game2
+bazel-testlogs
+.clwb/
+bazel-SDL3_bazel
+bazel-SDL3_bazel/
